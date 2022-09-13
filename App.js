@@ -34,34 +34,34 @@
 // }
 //? ---------------------------------------------------------------------------
 
-const yargs =require('yargs');
+const yargs = require('yargs');
 
 yargs.command({
-    command:"create",
-    aliases :["c"],
-    describe:"[create a new contacts]",
-    builder:{
-        fullName:{
-            alias:"f",
-            describe:"person full Name",
-            demandOption:true,
-            type:"string",
+    command: "create",
+    aliases: ["c"],
+    describe: "[create a new contacts]",
+    builder: {
+        fullName: {
+            alias: "f",
+            describe: "person full Name",
+            demandOption: true,
+            type: "string",
         },
-        phone:{
-            alias:"p",
-            describe:"person Phone Number",
-            demandOption:true,
-            type:"number",
+        phone: {
+            alias: "p",
+            describe: "person Phone Number",
+            demandOption: true,
+            type: "number",
         },
-        email:{
-            alias:"e",
-            describe:"person Email Address",
-            demandOption:true,
-            type:"string",
+        email: {
+            alias: "e",
+            describe: "person Email Address",
+            demandOption: true,
+            type: "string",
         },
-    }
-    handler({fullName,phone,email}){
-        console.log(fullName,phone,email);
+    },
+    handler({ fullName, phone, email }) {
+        console.log(fullName, phone, email);
     },
 });
 

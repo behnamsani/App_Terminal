@@ -40,6 +40,8 @@ const chalk = require('chalk');
 
 const { addContact, listContacts, removeContacts } = require('./contacts.js');
 
+yargs.scriptName(`${chalk.blueBright('Contacts Manager')}`);
+
 yargs.command({
     command: "create",
     aliases: ["c"],
@@ -86,7 +88,7 @@ yargs.command({
 yargs.command({
     command: "remove",
     aliases: ['r'],
-    describe: `${chalk.green('remove person by meli code')}`,
+    describe: `${chalk.green('[remove person by meli code]')}`,
     builder: {
         code: {
             alias: 'm',

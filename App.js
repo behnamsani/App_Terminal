@@ -36,14 +36,24 @@
 
 const yargs = require('yargs');
 
+const chalk = require('chalk');
+
+const { addContact, listContacts, removeContacts } = require('./contacts.js');
+
 yargs.command({
     command: "create",
     aliases: ["c"],
-    describe: "[create a new contacts]",
+    describe: `${chalk.green('[create a new contacts]')}`,
     builder: {
         fullName: {
             alias: "f",
             describe: "person full Name",
+            demandOption: true,
+            type: "string",
+        },
+        code: {
+            alias: "m",
+            describe: "person Meli Code",
             demandOption: true,
             type: "string",
         },
@@ -60,9 +70,34 @@ yargs.command({
             type: "string",
         },
     },
-    handler({ fullName, phone, email }) {
-        console.log(fullName, phone, email);
+    handler({ fullName, code, phone, email }) {
+        // console.log(fullName, phone, email);
+        addContact(fullName, code, phone, email);
     },
+});
+yargs.command({
+    command: "list",
+    aliases: ['l'],
+    describe: `${chalk.green('[saved contacts list]')}`,
+    handler() {
+        listContacts();
+    }
+});
+yargs.command({
+    command: "remove",
+    aliases: ['r'],
+    describe: `${chalk.green('remove person by meli code')}`,
+    builder: {
+        code: {
+            alias: 'm',
+            describe: 'person Meli Code',
+            demandOption: true,
+            type: 'string',
+        }
+    },
+    handler({ code }) {
+        removeContacts(code);
+    }
 });
 
 yargs.parse();
